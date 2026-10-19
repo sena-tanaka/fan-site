@@ -8,7 +8,7 @@
 | 内容 | URL |
 |------|-----|
 | ワイヤーフレーム（主要5画面） | https://www.figma.com/design/UsqKqKHhf0upnneWnDPOc7/BEAT-CREW-%E3%83%95%E3%82%A1%E3%83%B3%E3%82%B5%E3%82%A4%E3%83%88?node-id=0-1&t=yUwYi3rBefWuQ5iX-1 |
-| 画面遷移図 | （作成中） |
+| 画面遷移図 | https://www.figma.com/design/UsqKqKHhf0upnneWnDPOc7/BEAT-CREW-%E3%83%95%E3%82%A1%E3%83%B3%E3%82%B5%E3%82%A4%E3%83%88?node-id=0-1&t=yUwYi3rBefWuQ5iX-1 |
 
 ## 描いた画面
 
