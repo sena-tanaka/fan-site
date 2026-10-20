@@ -6,7 +6,7 @@
 
 | 内容 | URL |
 |------|-----|
-| ワイヤーフレーム（3画面・SP / PC） | （ここに Figma の共有リンクを貼る） |
+| ワイヤーフレーム（3画面・SP / PC） | https://www.figma.com/design/FNwNB2GY7CTtbpcXwN1V9z/MONO-STORE%EF%BC%88%E7%B7%B4%E7%BF%92%EF%BC%89?node-id=0-1&t=v99kYT5J27gFHLgK-1 |
 
 ※ 共有設定は「リンクを知っている全員」「閲覧可」にする。
 
