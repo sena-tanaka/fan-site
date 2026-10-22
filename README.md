@@ -1,30 +1,27 @@
-タイトル：Week18 基本課題：要件定義書の作成
+# BEAT CREW 公式ファンサイト
 
-## 概要
-Week 22〜24で開発する総合プロジェクト「BEAT CREW 公式ファンサイト」の要件定義書を作成しました。
+架空のヒップホップダンスチーム「BEAT CREW」（仮）の、ファン向け公式サイトです。
+出演情報・ダンス動画・チケット／グッズ購入・会員限定コンテンツを一つのサイトにまとめ、
+ファンが「迷わず情報を見つけ、安心して買い、毎日チームを身近に感じられる」ことを目指しています。
 
-## 内容
-- docs/requirements.md
-  1. プロジェクト概要
-  2. ユーザーストーリー（21個）
-  3. 機能要件一覧（優先度付き）
-  4. 非機能要件
-  5. 画面遷移図（Mermaidによる簡易版。Week 19でFigmaで清書予定）
-  6. 制約条件
-  
- Week18 要件定義書・練習課題の作成
+## 主な機能
+- チーム紹介・メンバー一覧
+- 出演スケジュール（カレンダー表示）
+- ダンス動画（YouTube埋め込み）
+- グッズ購入（会員登録なしでも購入可）
+- チケット購入（会員限定・電子チケット）
+- 1日1回のおみくじ（会員限定）
+- ダンサー本人による会員限定ブログ・いいね
+- お問い合わせ
 
-## 概要
-Week 22〜24で開発する総合プロジェクト「BEAT CREW 公式ファンサイト」の要件定義書と、練習課題1〜3を作成しました。
+## 使用技術
+Laravel / MySQL / Docker / Stripe（テストモード） / AWS（EC2・RDS・S3） / GitHub Actions
 
-## 基本課題
-- docs/requirements.md：要件定義書（プロジェクト概要／ユーザーストーリー21個／機能要件一覧／非機能要件／画面遷移図（Mermaid簡易版）／制約条件）
+## ドキュメント（docs/）
 
-## 練習課題
-- docs/practice/hearing-sheet.md：架空のクライアント（チーム運営責任者）へのヒアリングシート
-- docs/practice/user-stories.md：ECサイト機能（グッズ・チケット購入）のユーザーストーリーと受け入れ条件
-- docs/practice/requirements-sorting.md：曖昧な要求10件を明確な要件に整理した過程
-
-## 補足
-- 要件定義書を完成版とし、練習課題で詳細や決定の過程を記載。重複部分は相互にリンクしています。
-- 画面遷移図はWeek 19でFigmaを使って清書予定です。
+| ファイル | 内容 |
+|----------|------|
+| [requirements.md](./docs/requirements.md) | 要件定義書 |
+| [practice/hearing-sheet.md](./docs/practice/hearing-sheet.md) | ヒアリングシート |
+| [practice/user-stories.md](./docs/practice/user-stories.md) | ECサイト機能のユーザーストーリー |
+| [practice/requirements-sorting.md](./docs/practice/requirements-sorting.md) | 要件整理（曖昧な要求 → 明確な要件） |
