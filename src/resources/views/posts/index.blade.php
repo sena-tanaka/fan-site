@@ -9,8 +9,8 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 @foreach($posts as $post)
                 <div class="bg-white rounded-lg shadow p-4">
-                    @if($post->image)
-                    <img src="{{ Storage::url($post->image) }}" class="w-full h-48 object-cover rounded">
+                    @if($post->image_path)
+                    <img src="{{ Storage::url($post->image_path) }}" alt="{{ $post->title }}" class="w-full h-32 object-cover rounded">
                     @endif
                     <h2 class="text-xl font-bold mt-4">{{ $post->title }}</h2>
                     <p class="text-gray-500 text-sm">{{ $post->user->name }}</p>

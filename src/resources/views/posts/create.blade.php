@@ -6,15 +6,22 @@
             <form method="POST" action="{{ route('posts.store') }}" enctype="multipart/form-data">
                 @csrf
 
-                <div class="mb-4">
+                {{-- 文字数カウント: [...text] で数えると絵文字も1文字になり、Laravelの max と数え方がそろう --}}
+                <div class="mb-4" x-data="{ text: @js(old('title', '')), max: 100 }">
                     <label>タイトル(100文字まで)</label>
-                    <input type="text" name="title" value="{{ old('title') }}" class="w-full">
+                    <input type="text" name="title" x-model="text" class="w-full">
+                    <p class="text-sm text-right" :class="[...text].length > max ? 'text-red-600' : 'text-gray-500'">
+                        <span x-text="[...text].length"></span> / 100文字
+                    </p>
                     @error('title') <p class="text-red-600">{{ $message }}</p> @enderror
                 </div>
 
-                <div class="mb-4">
+                <div class="mb-4" x-data="{ text: @js(old('body', '')), max: 5000 }">
                     <label>本文(5000文字まで)</label>
-                    <textarea name="body" rows="8" class="w-full">{{ old('body') }}</textarea>
+                    <textarea name="body" rows="8" x-model="text" class="w-full"></textarea>
+                    <p class="text-sm text-right" :class="[...text].length > max ? 'text-red-600' : 'text-gray-500'">
+                        <span x-text="[...text].length"></span> / 5000文字
+                    </p>
                     @error('body') <p class="text-red-600">{{ $message }}</p> @enderror
                 </div>
 
