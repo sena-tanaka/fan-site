@@ -54,6 +54,12 @@ class User extends Authenticatable
         return $this->hasMany(Post::class);
     }
 
+    // お気に入りした記事
+    public function favorites()
+    {
+        return $this->belongsToMany(Post::class, 'favorites')->withTimestamps();
+    }
+
     public function member()
     {
         return $this->belongsTo(Member::class);

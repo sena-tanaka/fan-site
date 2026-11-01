@@ -7,7 +7,36 @@
 
             <h1 class="text-3xl font-bold mb-2">{{ $post->title }}</h1>
             <p class="text-gray-500 mb-4">投稿者: {{ $post->user->member->name ?? $post->user->name }}</p>
-
+            
+                        {{-- お気に入りボタン(ページを再読み込みせずに切り替える) --}}
+            <div class="mb-4" x-data="{
+                favorited: @js($isFavorited),
+                count: @js($favoritesCount),
+                toggleFavorite() {
+                    fetch('{{ route('posts.favorite', $post) }}', {
+                        method: 'POST',
+                        headers: {
+                            'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').content,
+                            'Accept': 'application/json',
+                        },
+                    })
+                    .then(res => res.json())
+                    .then(data => {
+                        this.favorited = data.favorited;
+                        this.count = data.count;
+                    });
+                }
+            }">
+                <button type="button" @click="toggleFavorite()"
+                        :class="favorited ? 'text-red-500' : 'text-gray-400'"
+                        class="flex items-center gap-1 hover:scale-110 transition">
+                    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                    </svg>
+                    <span x-text="count"></span>
+                </button>
+            </div>
+            
             @if($post->image_path)
             <img src="{{ Storage::url($post->image_path) }}" class="w-full md:w-1/2 max-h-96 object-cover rounded mb-4">
             @endif

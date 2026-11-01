@@ -57,12 +57,15 @@ class PostController extends Controller
              ->with('success', '記事を投稿しました！');
     }
 
-    // 詳細
+       // 詳細
     public function show(Post $post)
     {
-        $post->load('user');
+        $post->load('user.member'); // 詳細画面でメンバー名も使うので一緒に読み込む
 
-        return view('posts.show', compact('post'));
+        $isFavorited    = auth()->user()->favorites()->where('post_id', $post->id)->exists();
+        $favoritesCount = $post->favorites()->count();
+
+        return view('posts.show', compact('post', 'isFavorited', 'favoritesCount'));
     }
 
         // 編集フォームの表示
