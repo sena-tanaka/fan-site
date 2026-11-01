@@ -19,9 +19,9 @@ Route::middleware('auth')->group(function () {
 
     // ブログ(URLは /blog、ルート名は posts.*)
     Route::resource('blog', PostController::class)
-        ->only(['index', 'create', 'store', 'show'])
-        ->names('posts')
-        ->parameters(['blog' => 'post']);
+       ->only(['index', 'create', 'store', 'show', 'edit', 'update', 'destroy'])
+       ->names('posts')
+       ->parameters(['blog' => 'post']);
 });
 
 require __DIR__.'/auth.php';
