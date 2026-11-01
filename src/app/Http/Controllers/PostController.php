@@ -3,18 +3,35 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StorePostRequest;
-use App\Http\Requests\UpdatePostRequest;   // 追加
+use App\Http\Requests\UpdatePostRequest;   
 use App\Models\Post;
-use Illuminate\Support\Facades\Storage;    // 追加
+use Illuminate\Support\Facades\Storage;    
+use Illuminate\Http\Request;   
 
 class PostController extends Controller
 {
-    // 一覧(ページネーション付き)
-    public function index()
+        // 一覧(検索・並び替え・ページネーション付き)
+    public function index(Request $request)
     {
-        $posts = Post::with('user.member')   // 設計書どおり、メンバーまでまとめて読み込む
-            ->latest()
-            ->paginate(6);
+        $query = Post::with('user.member');   // 設計書どおり、メンバーまでまとめて読み込む
+
+        // キーワード検索(タイトルか本文に含まれる記事)
+        if ($request->filled('search')) {
+            $search = $request->search;
+            $query->where(function ($q) use ($search) {
+                $q->where('title', 'like', "%{$search}%")
+                  ->orWhere('body', 'like', "%{$search}%");
+            });
+        }
+
+        // 並び替え
+        if ($request->get('sort') === 'oldest') {
+            $query->oldest();
+        } else {
+            $query->latest();
+        }
+
+        $posts = $query->paginate(6)->withQueryString();
 
         return view('posts.index', compact('posts'));
     }
