@@ -1,4 +1,11 @@
 <x-guest-layout>
+        <div class="mb-6 text-center">
+        <h1 class="text-xl font-bold text-gray-900">BEATcrew 公式ファンサイト</h1>
+        <p class="text-sm text-gray-600 mt-2">
+            メンバーのブログや出演スケジュールが見られる、会員限定のサイトです。<br>
+            ログイン、または会員登録をしてください。
+        </p>
+    </div>
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
@@ -43,5 +50,12 @@
                 {{ __('Log in') }}
             </x-primary-button>
         </div>
+
+        {{-- 会員登録への案内 --}}
+        <p class="mt-6 text-center text-sm text-gray-600">
+            はじめての方は
+            <a href="{{ route('register') }}" class="text-indigo-600 underline hover:text-indigo-800">会員登録</a>
+            へ
+        </p>
     </form>
 </x-guest-layout>
