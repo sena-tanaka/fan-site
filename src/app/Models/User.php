@@ -64,4 +64,10 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Member::class);
     }
+
+        // ダンサーかどうか
+    public function isDancer(): bool
+    {
+        return $this->role === UserRole::Dancer;
+    }
 }

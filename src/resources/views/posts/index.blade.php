@@ -7,7 +7,9 @@
 
             <div class="flex justify-between items-center mb-6">
                 <h1 class="text-3xl font-bold">ブログ</h1>
+                @can('create', App\Models\Post::class)
                 <a href="{{ route('posts.create') }}" class="bg-blue-600 text-white px-4 py-2 rounded">記事を書く</a>
+                @endcan
             </div>
 
             {{-- 検索フォーム(GETで送るので、条件がURLに残る) --}}

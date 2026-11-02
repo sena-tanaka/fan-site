@@ -36,17 +36,22 @@ class PostController extends Controller
         return view('posts.index', compact('posts'));
     }
 
-    // 投稿フォームの表示
+       // 投稿フォームの表示
     public function create()
     {
+        $this->authorize('create', Post::class); // ダンサー以外は403
+
         return view('posts.create');
     }
 
     // 保存(画像処理込み)
     public function store(StorePostRequest $request)
     {
-         $data = $request->safe()->only(['title', 'body']);
+        $this->authorize('create', Post::class);
 
+        $data = $request->safe()->only(['title', 'body']);
+        // ...(以下はそのまま)
+        
         if ($request->hasFile('image')) {
             $data['image_path'] = $request->file('image')->store('posts', 'public');
         }
