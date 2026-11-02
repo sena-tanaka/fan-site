@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             MemberSeeder::class, // 先にメンバーを作る(ユーザーが member_id で使うため)
             UserSeeder::class,
+            ScheduleSeeder::class,
         ]);
     }
 }
