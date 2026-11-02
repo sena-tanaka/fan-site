@@ -1,6 +1,6 @@
 <x-app-layout>
     <div class="py-12">
-        <div class="max-w-2xl mx-auto sm:px-6 lg:px-8">
+        <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
             <h1 class="text-3xl font-bold mb-6">記事を編集</h1>
 
             <form method="POST" action="{{ route('posts.update', $post) }}" enctype="multipart/form-data">
@@ -19,8 +19,7 @@
 
                 <div class="mb-4" x-data="{ text: @js(old('body', $post->body)), max: 5000 }">
                     <label>本文(5000文字まで)</label>
-                    <textarea name="body" rows="8" x-model="text" class="w-full"></textarea>
-                    <p class="text-sm text-right" :class="[...text].length > max ? 'text-red-600' : 'text-gray-500'">
+          <textarea name="body" rows="8" x-model="text" class="w-full rounded border-gray-300"></textarea>                    <p class="text-sm text-right" :class="[...text].length > max ? 'text-red-600' : 'text-gray-500'">
                         <span x-text="[...text].length"></span> / 5000文字
                     </p>
                     @error('body') <p class="text-red-600">{{ $message }}</p> @enderror

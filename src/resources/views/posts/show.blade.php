@@ -1,6 +1,6 @@
 <x-app-layout>
     <div class="py-12">
-        <div class="max-w-3xl mx-auto sm:px-6 lg:px-8">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
             @if(session('success'))
             <p class="text-green-600 mb-4">{{ session('success') }}</p>
             @endif
@@ -36,10 +36,9 @@
                     <span x-text="count"></span>
                 </button>
             </div>
-            
+
             @if($post->image_path)
-            <img src="{{ Storage::url($post->image_path) }}" class="w-full md:w-1/2 max-h-96 object-cover rounded mb-4">
-            @endif
+            <img src="{{ Storage::url($post->image_path) }}" alt="{{ $post->title }}" class="w-full md:w-1/2 max-h-96 object-cover rounded mb-4">            @endif
 
             <p class="whitespace-pre-line">{{ $post->body }}</p>
 

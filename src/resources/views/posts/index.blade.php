@@ -1,6 +1,6 @@
 <x-app-layout>
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             @if(session('success'))
             <p class="text-green-600 mb-4">{{ session('success') }}</p>
             @endif
@@ -29,21 +29,11 @@
                 @endif
             </form>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 @forelse($posts as $post)
-                <div class="bg-white rounded-lg shadow p-4">
-                    @if($post->image_path)
-                    <img src="{{ Storage::url($post->image_path) }}" alt="{{ $post->title }}" class="w-full h-32 object-cover rounded">
-                    @endif
-                    <h2 class="text-xl font-bold mt-4">{{ $post->title }}</h2>
-                    <p class="text-gray-500 text-sm">{{ $post->user->name }}</p>
-                    <p class="text-gray-600 mt-2">{{ Str::limit($post->body, 100) }}</p>
-                    <div class="mt-4">
-                        <a href="{{ route('posts.show', $post) }}" class="text-blue-600">詳細を見る</a>
-                    </div>
-                </div>
+                    <x-post-card :post="$post" />
                 @empty
-                <p class="text-gray-500 col-span-full">記事が見つかりませんでした。</p>
+                    <p class="text-gray-500 col-span-full">記事が見つかりませんでした。</p>
                 @endforelse
             </div>
 
