@@ -25,7 +25,7 @@ class UserSeeder extends Seeder
                 ['email' => $email],
                 [
                     'name'              => $memberName,
-                    'password'          => 'password', // User の casts で自動的にハッシュ化される
+                    'password'          => env('DEMO_PASSWORD', 'password'),
                     'role'              => UserRole::Dancer,
                     'member_id'         => $member->id,
                     'email_verified_at' => now(),
@@ -38,7 +38,7 @@ class UserSeeder extends Seeder
             ['email' => 'fan@example.com'],
             [
                 'name'              => 'ファン太郎',
-                'password'          => 'password',
+                'password' => env('DEMO_PASSWORD', 'password'),
                 'role'              => UserRole::Fan,
                 'member_id'         => null,
                 'email_verified_at' => now(),
