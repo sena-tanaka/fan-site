@@ -14,8 +14,8 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100">
+       <body class="font-sans antialiased">
+        <div class="min-h-screen bg-gray-100 flex flex-col">
             @include('layouts.navigation')
 
             <!-- Page Heading -->
@@ -28,9 +28,16 @@
             @endisset
 
             <!-- Page Content -->
-            <main>
+            <main class="flex-1">
                 {{ $slot }}
             </main>
+
+            <!-- フッター -->
+            <footer class="bg-gray-900 text-gray-400">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 text-center text-sm">
+                    &copy; {{ date('Y') }} BEATcrew 公式ファンサイト
+                </div>
+            </footer>
         </div>
     </body>
 </html>

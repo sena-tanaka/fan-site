@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth')->group(function () {
     // トップ(タスク6で TopController に置き換える)
     Route::get('/', function () {
-        return view('welcome');
+        return view('top');
     })->name('home');
 
     Route::get('/dashboard', function () {
