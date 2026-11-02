@@ -14,4 +14,10 @@ class Post extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    // この記事をお気に入りしたユーザー
+    public function favorites()
+    {
+        return $this->belongsToMany(User::class, 'favorites')->withTimestamps();
+    }
 }

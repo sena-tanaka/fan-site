@@ -1,6 +1,6 @@
 <x-app-layout>
     <div class="py-12">
-        <div class="max-w-2xl mx-auto sm:px-6 lg:px-8">
+        <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
             <h1 class="text-3xl font-bold mb-6">記事を書く</h1>
 
             <form method="POST" action="{{ route('posts.store') }}" enctype="multipart/form-data">
@@ -9,7 +9,7 @@
                 {{-- 文字数カウント: [...text] で数えると絵文字も1文字になり、Laravelの max と数え方がそろう --}}
                 <div class="mb-4" x-data="{ text: @js(old('title', '')), max: 100 }">
                     <label>タイトル(100文字まで)</label>
-                    <input type="text" name="title" x-model="text" class="w-full">
+                    <input type="text" name="title" x-model="text" class="w-full rounded border-gray-300">
                     <p class="text-sm text-right" :class="[...text].length > max ? 'text-red-600' : 'text-gray-500'">
                         <span x-text="[...text].length"></span> / 100文字
                     </p>
