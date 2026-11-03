@@ -5,11 +5,15 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TopController;
+use App\Http\Controllers\MemberController;
 
 // ログインしていないと、どのページも見られない(F-29)
 Route::middleware('auth')->group(function () {
         // トップ
     Route::get('/', TopController::class)->name('home');
+
+    // メンバー一覧(F-06)
+    Route::get('/members', [MemberController::class, 'index'])->name('members.index');
 
     Route::get('/dashboard', function () {
         return view('dashboard');
