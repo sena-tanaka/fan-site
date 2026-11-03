@@ -4,13 +4,12 @@ use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TopController;
 
 // ログインしていないと、どのページも見られない(F-29)
 Route::middleware('auth')->group(function () {
-    // トップ(タスク6で TopController に置き換える)
-    Route::get('/', function () {
-        return view('top');
-    })->name('home');
+        // トップ
+    Route::get('/', TopController::class)->name('home');
 
     Route::get('/dashboard', function () {
         return view('dashboard');
