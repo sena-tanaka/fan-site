@@ -6,6 +6,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TopController;
 use App\Http\Controllers\MemberController;
+use App\Http\Controllers\ScheduleController;
 
 // ログインしていないと、どのページも見られない(F-29)
 Route::middleware('auth')->group(function () {
@@ -22,6 +23,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    // 出演スケジュール(一覧・詳細)
+    Route::resource('schedules', ScheduleController::class)->only(['index', 'show']);
 
     // ブログ(URLは /blog、ルート名は posts.*)
     Route::resource('blog', PostController::class)
