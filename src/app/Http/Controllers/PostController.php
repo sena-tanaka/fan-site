@@ -6,14 +6,15 @@ use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;   
 use App\Models\Post;
 use Illuminate\Support\Facades\Storage;    
-use Illuminate\Http\Request;   
+use Illuminate\Http\Request;  
+use App\Models\Member; 
 
 class PostController extends Controller
 {
-        // 一覧(検索・並び替え・ページネーション付き)
+        // 一覧(検索・絞り込み・並び替え・ページネーション付き)
     public function index(Request $request)
     {
-        $query = Post::with('user.member');   // 設計書どおり、メンバーまでまとめて読み込む
+        $query = Post::with('user.member');
 
         // キーワード検索(タイトルか本文に含まれる記事)
         if ($request->filled('search')) {
@@ -21,6 +22,13 @@ class PostController extends Controller
             $query->where(function ($q) use ($search) {
                 $q->where('title', 'like', "%{$search}%")
                   ->orWhere('body', 'like', "%{$search}%");
+            });
+        }
+
+        // メンバーで絞り込み(F-32): 投稿したユーザーの member_id で絞る
+        if ($request->filled('member')) {
+            $query->whereHas('user', function ($q) use ($request) {
+                $q->where('member_id', $request->member);
             });
         }
 
@@ -33,9 +41,12 @@ class PostController extends Controller
 
         $posts = $query->paginate(6)->withQueryString();
 
-        return view('posts.index', compact('posts'));
-    }
+        // プルダウン用のメンバー一覧
+        $members = Member::where('is_active', true)->orderBy('sort_order')->get();
 
+        return view('posts.index', compact('posts', 'members'));
+    }
+    
        // 投稿フォームの表示
     public function create()
     {

@@ -27,5 +27,10 @@
         @if ($member->profile)
             <p class="text-gray-700 text-sm mt-3 leading-relaxed whitespace-pre-line">{{ $member->profile }}</p>
         @endif
+        
+        <a href="{{ route('posts.index', ['member' => $member->id]) }}"
+           class="inline-block mt-4 text-sm text-blue-600 hover:text-blue-800 font-medium">
+            {{ $member->name }}のブログを見る →
+        </a>
     </div>
 </div>
