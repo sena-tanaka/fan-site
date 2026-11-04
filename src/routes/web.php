@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TopController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\ScheduleController;
+use App\Http\Controllers\ContactController;
 
 // ログインしていないと、どのページも見られない(F-29)
 Route::middleware('auth')->group(function () {
@@ -34,6 +35,11 @@ Route::middleware('auth')->group(function () {
         ->parameters(['blog' => 'post']);
 
     Route::post('/blog/{post}/favorite', [FavoriteController::class, 'toggle'])->name('posts.favorite');
+
+        // お問い合わせ
+    Route::get('/contact', [ContactController::class, 'create'])->name('contact.create');
+    Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
+    Route::get('/contact/thanks', [ContactController::class, 'thanks'])->name('contact.thanks');
 });
 
 // ログイン・会員登録などの画面(ここはログインしていなくても開ける)
