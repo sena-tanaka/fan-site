@@ -10,9 +10,14 @@
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+        {{-- 見出し用の筆文字フォント(トップ・メンバー一覧) --}}
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Knewave&display=swap" rel="stylesheet">
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @stack('head')
     </head>
        <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100 flex flex-col">
@@ -28,7 +33,7 @@
             @endisset
 
             <!-- Page Content -->
-            <main class="flex-1">
+            <main class="flex-1 {{ $mainClass ?? '' }}">
                 {{ $slot }}
             </main>
 

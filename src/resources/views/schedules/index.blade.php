@@ -1,7 +1,10 @@
 <x-app-layout>
+    {{-- 背景を黒にする(トップと同じ) --}}
+    <x-slot name="mainClass">bg-black text-white</x-slot>
+
     <div class="py-12">
         <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h1 class="text-3xl font-bold mb-8">SCHEDULE</h1>
+            <h1 class="font-brush text-4xl sm:text-5xl tracking-wide mb-8">SCHEDULE</h1>
 
             {{-- これからの予定 --}}
             <section>

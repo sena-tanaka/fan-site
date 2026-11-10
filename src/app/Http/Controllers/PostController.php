@@ -7,7 +7,8 @@ use App\Http\Requests\UpdatePostRequest;
 use App\Models\Post;
 use Illuminate\Support\Facades\Storage;    
 use Illuminate\Http\Request;  
-use App\Models\Member; 
+use App\Models\Member;
+use Illuminate\Support\Carbon;
 
 class PostController extends Controller
 {
@@ -32,6 +33,16 @@ class PostController extends Controller
             });
         }
 
+        // 月で絞り込み(?month=2026-11 のような形): その月に投稿された記事
+        if (preg_match('/^\d{4}-\d{2}$/', (string) $request->get('month'))) {
+            try {
+                $start = Carbon::createFromFormat('Y-m-d', $request->month . '-01')->startOfDay();
+                $query->whereBetween('created_at', [$start, $start->copy()->endOfMonth()]);
+            } catch (\Exception $e) {
+                // 13月など、ありえない値のときは絞り込まない
+            }
+        }
+
         // 並び替え
         if ($request->get('sort') === 'oldest') {
             $query->oldest();
@@ -44,7 +55,14 @@ class PostController extends Controller
         // プルダウン用のメンバー一覧
         $members = Member::where('is_active', true)->orderBy('sort_order')->get();
 
-        return view('posts.index', compact('posts', 'members'));
+        // プルダウン用の月一覧(記事がある月だけ、新しい月から)
+        $months = Post::orderByDesc('created_at')
+            ->pluck('created_at')
+            ->map(fn ($date) => $date->format('Y-m'))
+            ->unique()
+            ->values();
+
+        return view('posts.index', compact('posts', 'members', 'months'));
     }
     
        // 投稿フォームの表示
