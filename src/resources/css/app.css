@@ -1,3 +1,30 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* トップのブログ: 右から左へ流れるスライド(動きは resources/js/marquee.js) */
+@layer components {
+    .marquee {
+        overflow-x: auto;
+        overscroll-behavior-x: contain;
+        scrollbar-width: none;       /* スクロールバーを隠す(Firefox) */
+        cursor: grab;
+        /* 左右の端をふわっと消す */
+        mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+        -webkit-mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+    }
+
+    .marquee::-webkit-scrollbar {
+        display: none;               /* スクロールバーを隠す(Chrome・Safari) */
+    }
+
+    .marquee.is-dragging {
+        cursor: grabbing;
+        user-select: none;
+    }
+
+    .marquee-track {
+        display: flex;
+        width: max-content;
+    }
+}
