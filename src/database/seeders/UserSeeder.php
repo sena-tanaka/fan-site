@@ -25,8 +25,7 @@ class UserSeeder extends Seeder
                 ['email' => $email],
                 [
                     'name'              => $memberName,
-                    'password'          => env('DEMO_PASSWORD', 'sena0310'),
-                    'role'              => UserRole::Dancer,
+                    'password' => env('DEMO_PASSWORD', 'password'),                    'role'              => UserRole::Dancer,
                     'member_id'         => $member->id,
                     'email_verified_at' => now(),
                 ]
@@ -38,8 +37,7 @@ class UserSeeder extends Seeder
             ['email' => 'fan@example.com'],
             [
                 'name'              => 'ファン太郎',
-                'password' => env('DEMO_PASSWORD', 'sena0310'),
-                'role'              => UserRole::Fan,
+                'password' => env('DEMO_PASSWORD', 'password'),                'role'              => UserRole::Fan,
                 'member_id'         => null,
                 'email_verified_at' => now(),
             ]
